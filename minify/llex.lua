@@ -26,8 +26,7 @@
 ----------------------------------------------------------------------]]
 
 local base = _G
-local string = require "string"
-module "llex"
+local string = string
 
 local find = string.find
 local match = string.match

@@ -26,8 +26,7 @@
 ----------------------------------------------------------------------]]
 
 local base = _G
-local string = require "string"
-module "lparser"
+local string = string
 
 --[[--------------------------------------------------------------------
 -- variable and data structure initialization

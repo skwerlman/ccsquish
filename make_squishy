@@ -5,7 +5,7 @@ if not arg[1] or arg[1]:match("%-%-?help") or arg[1]:match("^[/-]%?$") then
 	print ""
 	print(" Usage: "..arg[0].." FILE1 FILE2 FILE...");
 	print ""
-	print "make_squishy will scan the given files for require() calls, and convert the "
+	print "make_squishy will scan the given files for os.loadAPI() calls, and convert the "
 	print "found modules into a squishy file, 'squishy.new'. make_squishy automatically scans "
 	print "the modules it finds, looking for further dependencies. To disable this, use "
 	print "the --no-recursion option."
@@ -77,7 +77,7 @@ local package_cpath = package.cpath:gsub("[^;]+", function (path)
 
 function scan_file(outfile, scanfile)
 	for line in io.lines(scanfile) do
-		for _, module in (" "..line):gmatch("[^%w_]require%s*%(?([\"'])(.-)%1") do
+		for _, module in (" "..line):gmatch("[^%w_]os\.loadAPI%s*%(?([\"'])(.-)%1") do
 			if not modules[module] then
 				local binary;
 				modules[module] = true;

@@ -1,3 +1,9 @@
+CCSquish
+========
+
+A ComputerCraft port of [Squish](https://github.com/LuaDist/squish)
+
+The original README is below, except for parts which could not be implemented in CC.
 
 # Squish - One language to write them all, one squisher to squish them
 
@@ -10,13 +16,6 @@ When run, Squish reads a file called 'squishy' in the current (or specified) dir
 instructions on how to squish a project.
 
 For an example you can see Squish's own squishy file, included in this package. For reference, see below.
-
-## Building and installing
-
-Squish uses itself to squish itself and its components into a single 'squish' utility that can be run anywhere.
-To build squish, just run "make" - there are no dependencies other than Lua.
-
-You can run "make install" to copy squish to /usr/local/bin/ if you have permission.
 
 ## Squishing
 
@@ -59,26 +58,6 @@ savings are usually well worth it.
 
 #### --gzip
 Compress the generated code with gzip. Requires the gzip command-line utility (for compression only).
-
-### Compile
-Squish can compile the resulting file to Lua bytecode. This is experimental at this stage (you may get better results 
-with luac right now), however it's a work in progress. Compiling to bytecode can actually increase the size of 
-minified output, but it can speed up loading (not that you would notice it anyway, since the Lua compiler is so fast).
-
-#### --compile
-Enables compilation of the output file.
-
-### Debug
-Due to the way Squish combines multiple scripts into one, sometimes when a squished script raises an error the traceback 
-will be fairly unhelpful, and point to a line in the unreadable squished script. This is where the debug extension comes in!
-
-#### --debug
-This option includes some code into the squished file which will restore the filenames and line numbers in error messages and 
-tracebacks. This option will increase the size of the output by no more than about 6KB, so may be very much worth it when 
-squishing large tricky-to-debug applications and libraries.
-
-**Note:** Minification may interfere with the line number calculation, use --minify-level=debug to enable all features of minify 
-that don't change line numbers, and everything will be fine.
 
 ### Virtual IO
 Squish allows you to pack resources (any file) into the squished output. Sometimes it would be convenient to access these through 
@@ -124,7 +103,7 @@ of the module file that was given in the Module statement.
 ## make_squishy
 
 Squish includes a small utility which aims to help with converting a project to use Squish. Pass it a list of files 
-and it will scan those files looking for calls to require(). It will then attempt to resolve the module names to 
+and it will scan those files looking for calls to os.loadAPI(). It will then attempt to resolve the module names to 
 files relative to the directory of the first filename passed to make_squishy.
 
 It generates a 'squishy.new' file in the current directory. Modify accordingly and rename to just 'squishy'.

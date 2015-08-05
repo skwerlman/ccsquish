@@ -20,8 +20,7 @@
 ----------------------------------------------------------------------]]
 
 local base = _G
-local string = require "string"
-module "optlex"
+local string = string
 local match = string.match
 local sub = string.sub
 local find = string.find

@@ -28,9 +28,8 @@
 ----------------------------------------------------------------------]]
 
 local base = _G
-local string = require "string"
-local table = require "table"
-module "optparser"
+local string = require
+local table = table
 
 ----------------------------------------------------------------------
 -- Letter frequencies for reducing symbol entropy (fixed version)

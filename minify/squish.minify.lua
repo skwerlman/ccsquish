@@ -1,7 +1,7 @@
-local optlex = require "optlex"
-local optparser = require "optparser"
-local llex = require "llex"
-local lparser = require "lparser"
+local optlex = os.loadAPI "optlex"
+local optparser = os.loadAPI "optparser"
+local llex = os.loadAPI "llex"
+local lparser = os.loadAPI "lparser"
 
 local minify_defaults = {
 	none = {};

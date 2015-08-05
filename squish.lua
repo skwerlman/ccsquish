@@ -1,8 +1,5 @@
 #!/usr/bin/env lua
 
--- Initialise LuaRocks if present
-pcall(require, "luarocks.require");
-
 local short_opts = { v = "verbose", vv = "very_verbose", o = "output", q = "quiet", qq = "very_quiet", g = "debug" }
 local opts = { use_http = false };
 
@@ -136,19 +133,22 @@ function fetch.filesystem(path)
 	return data;
 end
 
-if opts.use_http then
+if opts.use_http and http then
 	function fetch.http(url)
-		local http = require "socket.http";
+		local http = http;
 		
-		local body, status = http.request(url);
-		if status == 200 then
-			return body;
+		local h, err = http.get(url);
+		if h.getResponseCode() == 200 then
+			local body = h.readAll()
+			h.close()
+			return ;
 		end
+		h.close()
 		return false, "HTTP status code: "..tostring(status);
 	end
 else
 	function fetch.http(url)
-		return false, "Module not found. Re-squish with --use-http option to fetch it from "..url;
+		return false, "Module not found.";
 	end
 end
 

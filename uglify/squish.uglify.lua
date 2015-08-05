@@ -1,4 +1,4 @@
-local llex = require "llex"
+local llex = os.loadAPI "llex"
 
 local base_char = 128;
 local keywords = { "and", "break", "do", "else", "elseif",
